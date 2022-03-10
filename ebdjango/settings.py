@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import urllib.parse
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -36,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'helloworld',
+    'cloudcr',
 ]
 
 MIDDLEWARE = [
@@ -72,11 +74,15 @@ WSGI_APPLICATION = 'ebdjango.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+sHost = 'mongodb+srv://admin:' + urllib.parse.quote_plus('M@13579!!!') + '@clustermain.dn6bt.mongodb.net/ClusterMain?retryWrites=true&w=majority'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'ClusterMain',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+                'host': sHost
+            }
     }
 }
 
